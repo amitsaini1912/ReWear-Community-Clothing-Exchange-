@@ -45,6 +45,13 @@ app.get("/item/:id", async (req, res) => {
     res.send(item);
 })
 
+app.delete("/item/:id", async (req, res)=>{
+    let reqId = req.params.id;
+    await Item.findByIdAndDelete(reqId)
+            .then( (res) => {console.log("Item deleted Successfull")})
+            .catch((err) => {console.log("Error")});
+    res.redirect("/");
+})
 
 app.listen(8080, ()=>{
     console.log("App is listing for req & res");
