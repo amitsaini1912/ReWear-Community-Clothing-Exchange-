@@ -15,6 +15,12 @@ async function main() {
     await mongoose.connect("mongodb://127.0.0.1:27017/reWear")
 } 
 
+const cors = require('cors'); //CORS Error - to allow frontend to send data to backend api
+app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000' }));
+
+
+
 app.set("views", path.join(__dirname, "views")); //if we start server from other dir it will redirect it in views
 app.set("View engine", "ejs");
 
@@ -62,7 +68,7 @@ app.post("/signup", async(req, res) => {
           .then( (res) => {console.log("newUser Saved")})
           .catch((err) => {console.log("Error")});
 
-    res.redirect("/");
+    res.send(newUser);
 })
 
 app.listen(8080, ()=>{

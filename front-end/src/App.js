@@ -1,10 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import SignUp from './components/signup';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <h1>reWear</h1>
+      <BrowserRouter>
+        <h1>reWear</h1>
+         <Routes>
+           <Route path='/signup' element={<SignUp/>} />
+         </Routes>
+      </BrowserRouter>
     </div>
   );
 }
