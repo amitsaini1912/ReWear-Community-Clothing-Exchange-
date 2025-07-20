@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const Item = require("./models/item");
+const User = require("./models/user");
 
 main()
      .then(()=>{
@@ -50,6 +51,17 @@ app.delete("/item/:id", async (req, res)=>{
     await Item.findByIdAndDelete(reqId)
             .then( (res) => {console.log("Item deleted Successfull")})
             .catch((err) => {console.log("Error")});
+    res.redirect("/");
+})
+
+//user routes
+app.post("/signup", async(req, res) => {
+    let newUser = new User(req.body);
+
+     await newUser.save()
+          .then( (res) => {console.log("newUser Saved")})
+          .catch((err) => {console.log("Error")});
+
     res.redirect("/");
 })
 
