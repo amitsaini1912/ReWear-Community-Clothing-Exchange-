@@ -8,6 +8,14 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const auth = localStorage.getItem('user');
+        if (auth) {
+            navigate('/')
+        }
+    }, [])
+
+
     const collectData = async () => {
         console.warn(name, email, password);
         try {
@@ -24,6 +32,7 @@ const SignUp = () => {
             }
 
             const result = await response.json();
+            localStorage.setItem("user", JSON.stringify(result)); //New user created in localstorage and saved in "user"
             console.log("Result from backend:", result);
         } catch (error) {
             console.error("Fetch error:", error.message);
