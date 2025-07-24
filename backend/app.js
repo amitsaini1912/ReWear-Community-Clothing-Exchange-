@@ -71,6 +71,14 @@ app.post("/signup", async(req, res) => {
     res.send(newUser);
 })
 
+app.post("/login", async(req, res)=>{
+    let user = await User.findOne(req.body).select("-password");
+    if(user)
+        res.send(user);
+    else
+        res.send("User not Found");
+})
+
 app.listen(8080, ()=>{
     console.log("App is listing for req & res");
 })
