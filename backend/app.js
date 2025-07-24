@@ -43,7 +43,7 @@ app.post("/add-item", async (req, res)=>{
           .then( (res) => {console.log("newItem Saved")})
           .catch((err) => {console.log("Error")});
 
-    res.redirect("/");
+    res.json({ message: "Request received" })
 })
 
 app.get("/item/:id", async (req, res) => {
