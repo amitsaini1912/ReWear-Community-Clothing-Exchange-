@@ -31,10 +31,10 @@ const itemSchema = new mongoose.Schema({
   },
   image: String, // Use Multer to upload images
 
-  /*uploader: { 
+  uploader: { 
     type: mongoose.Schema.Types.ObjectId,
     ref: "User" 
-  },*/
+  },
   
   date: { type: Date, default: Date.now },
 });
