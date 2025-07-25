@@ -6,6 +6,8 @@ import AddProduct from './components/addProduct';
 import PrivateComponent from './components/privateComponent';
 import Login from './components/login';
 
+import DeleteButton from './components/deleteBotton';
+
 function App() {
   return (
     <div className="App">
@@ -23,6 +25,8 @@ function App() {
 
            <Route path='/signup' element={<SignUp/>} />
            <Route path='/login' element={<Login/>} />
+
+           <Route path='/item/delele/:id' element={ <DeleteButton/>}/>
 
          </Routes>
       </BrowserRouter>

@@ -52,13 +52,21 @@ app.get("/item/:id", async (req, res) => {
     res.send(item);
 })
 
-app.delete("/item/:id", async (req, res)=>{
-    let reqId = req.params.id;
-    await Item.findByIdAndDelete(reqId)
-            .then( (res) => {console.log("Item deleted Successfull")})
-            .catch((err) => {console.log("Error")});
-    res.redirect("/");
-})
+pp.delete("/item/:id", async (req, res) => {
+  try {
+    const reqId = req.params.id;
+    const deletedItem = await Item.findByIdAndDelete(reqId);
+
+    if (!deletedItem) {
+      return res.status(404).send({ message: "Item not found" });
+    }
+
+    res.status(200).send({ message: "Item deleted successfully", id: deletedItem._id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Error deleting item" });
+  }
+});
 
 //user routes
 app.post("/signup", async(req, res) => {
