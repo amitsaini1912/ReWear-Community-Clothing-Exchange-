@@ -7,6 +7,7 @@ import PrivateComponent from './components/privateComponent';
 import Login from './components/login';
 
 import DeleteButton from './components/deleteBotton';
+import ViewProduct from './components/viewProduct';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
            <Route path='/login' element={<Login/>} />
 
            <Route path='/item/delele/:id' element={ <DeleteButton/>}/>
+           <Route path='/item/:id' element={<ViewProduct/>}/>
 
          </Routes>
       </BrowserRouter>

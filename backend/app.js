@@ -47,12 +47,15 @@ app.post("/add-item", async (req, res)=>{
 })
 
 app.get("/item/:id", async (req, res) => {
-    let reqId = req.params.id;
-    let item = await Item.findById(reqId);
-    res.send(item);
-})
+  try {
+    const item = await Item.findById(req.params.id).populate("uploader", "name");
+    res.json(item);
+  } catch (err) {
+    res.status(500).json({ error: "Item not found" });
+  }
+});
 
-pp.delete("/item/:id", async (req, res) => {
+app.delete("/item/:id", async (req, res) => {
   try {
     const reqId = req.params.id;
     const deletedItem = await Item.findByIdAndDelete(reqId);
