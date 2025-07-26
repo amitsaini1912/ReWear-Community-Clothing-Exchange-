@@ -8,16 +8,17 @@ import Login from './components/login';
 
 import DeleteButton from './components/deleteBotton';
 import ViewProduct from './components/viewProduct';
+import LandingPage from './components/landingPage';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <h1>reWear</h1>
          <Routes>
 
+            <Route path='/' element={<LandingPage/>} />
+
            <Route element={<PrivateComponent/>} >
-              <Route path='/' element={<h1>Product List Page</h1>} />
               <Route path='/add-product' element={<AddProduct/>} />
               <Route path='/profile' element={<h1>Profile Page</h1>} />
             
